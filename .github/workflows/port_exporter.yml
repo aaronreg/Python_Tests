@@ -3,22 +3,22 @@
 # github_host: For Github Enterprise users, if Github url is not passed, the default Github API "api.github.com" will be used.
 
 on:
-    workflow_dispatch:
-    schedule:
-        - cron: '0 */12 * * *' # Determines the scheduled interval for this workflow. This example runs every hour.
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
 
 jobs:
-    run-integration:
-        runs-on: ubuntu-latest
-		timeout-minutes: 30 # Set a time limit for the job
-		
-        steps:
-            - name: Run github-ocean Integration
-              uses: port-labs/ocean-sail@v1
-              with:
-                type: github-ocean
-                port_client_id: ${{ secrets.PORT_CLIENT_ID }}
-                port_client_secret: ${{ secrets.PORT_CLIENT_SECRET }}
-                port_base_url: "https://api.port.io"
-                config: |
-                    github_host: https://api.github.com
+  run-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Run github-ocean Integration
+        uses: port-labs/ocean-sail@v1
+        with:
+          type: github-ocean
+          port_client_id: ${{ secrets.PORT_CLIENT_ID }}
+          port_client_secret: ${{ secrets.PORT_CLIENT_SECRET }}
+          port_base_url: "https://api.port.io"
+          config: |
+            github_host: https://api.port.io
